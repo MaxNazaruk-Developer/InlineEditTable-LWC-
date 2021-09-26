@@ -1,18 +1,53 @@
-# Salesforce DX Project: Next Steps
+1.Создать таблицу используя тандартный объект Account с его стандартными полямт Name и Rating;
+2.Третьим столбцом добавить Delete; 
+  2.1. Данный столбик содержит кнопку, которая при наведении меняет цвет 
+  2.2. При нажатии на кнопку удаляется ряд и обновляется таблица.
+3.Столбцы Account Name & Rating содержат кнопку Edit, которая появляется при наведении на ряд. 
+  3.1. Кнопка Edit меняет цвет при наведении на нее; 
+  3.2. При нажатии на кнопку Edit данные ячейки должны редактироваться, при этом остальные кнопки Edit не должны реагировать на клик, не должны быть редактируемыми и так пока юзер не нажмет на cancel или на save; 
+  3.3. При нажатии на кнопку save все ячейки снова можно редактировать, кнопки Edit должны стать кликабельными;
+4.При изменении данных ячейки должны 
+  4.1 появиться футер с кнопками Cancel & Save в размер таблицы 
+  4.2 цвет отредактированной ячейки изменится на желтый 
+  4.3 должны быть видны измененные данные; 
+  4.4. При нажатии на Cancel цвет и данные ячейки измениться на прежние, а футер с кнопками скрыться; 
+  4.5. При нажатии на Save должны быть видны измененные данные, цвет ячейки измениться на прежний, футер с кнопками скрыться. 
+  4.6. Страница не должна обновляться, или перезагружаться. 
+  4.7. Ответ из базы данных об успешном редактировании надо показать на странице. Если ошибка то высветить ошибку и изменения вернуть опять же не перезагружая страницу , выполнить это динамически в JS.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Выполнение задачи:
+Отображается таблица с тремя колонками:
+1. Колонка с стандартным полем Name (Account Name). 
+2. Колонка с стандартным полем Rating (Rating). 
+3.Колонка с кнопкой удаления (Action).
+ ![Screenshot_14](https://user-images.githubusercontent.com/84872903/134822226-c5114102-1c7c-4835-9e23-1abf43751add.png)
 
-## How Do You Plan to Deploy Your Changes?
+Таблица является редактируемой. Об этом уведомляют пользователя иконки редактирования (карандаша), которые появляются при наведении на ячейку таблицы.  
+![Screenshot_1](https://user-images.githubusercontent.com/84872903/134822236-f1e1c5f4-a740-47e9-b040-59b6f6d3b007.png)
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Нажав на кнопку редактирования открывается поле ввода для колонки Account Name. При этом все кнопки редактирования остаются доступными для нажатия. 
+![Screenshot_2](https://user-images.githubusercontent.com/84872903/134822248-a99d6964-e14e-4fc5-ad56-bad5b14a99ac.png)
 
-## Configure Your Salesforce DX Project
+Для ячейки колонки Rating при редактирование будет показан список стандартных значений для выбора.
+ ![Screenshot_7](https://user-images.githubusercontent.com/84872903/134822251-0a4a6a3a-8f07-4902-b9a2-5967c29d8820.png)
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+Если пользователь ошибся и кликнул не в той ячейке кнопку редактирования, то он может кликнуть там, где надо отредактировать, при этом открытое поле для ввода закроется, значение поменяется на то что было до редактирования и откроется новое.
+ ![Screenshot_3](https://user-images.githubusercontent.com/84872903/134822263-ee1fd94b-8ae4-417e-8d71-b4751ba8c447.png)
 
-## Read All About It
+Если пользователь передумал редактировать таблицу, он может кликнуть Esc и поля для ввода закроется, отредактированная ячейка вернет старое значение. 
+![Screenshot_4](https://user-images.githubusercontent.com/84872903/134822277-176c7b75-3dd8-4f5c-b8ea-172109f01b26.png)
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+После ввода нужного значения нажимаем enter. Поле для ввода закроете, отредактированная ячейка изменит свой цвет на желтый, в низу таблицы появится две кнопки (Cancel, Save) для сохранения или отмены нового значения. Редактирование ячеек станет недоступным (скроются кнопки редактирования)
+ ![Screenshot_5](https://user-images.githubusercontent.com/84872903/134822288-64ed3575-b48c-4558-94aa-d79fd1fc4996.png)
+![Screenshot_8](https://user-images.githubusercontent.com/84872903/134822289-8afcc450-d6b3-445d-8d25-b27934fec092.png)
+
+ 
+После нажатия кнопки Save, Account обновится с новым значением поля, если обновление пройдет успешно покажется сообщение об успешном обновлении и таблица обновится с новыми значениями. Если обновления будет не удачным, то появится сообщение об ошибку с описанием проблемы, таблица примет свой прежний вид. 
+Нажав Cancel значение не будет обновлено, таблица примет исходные значения.
+ ![Screenshot_6](https://user-images.githubusercontent.com/84872903/134822296-d9e0ad17-ee7e-436f-899a-8e117227c0d2.png)
+
+После наведения на кнопку Delete цвет становится синий и всплывает название delete. 
+![Screenshot_9](https://user-images.githubusercontent.com/84872903/134822302-4f2be17a-09c7-414b-8b43-ccf53ad96acb.png)
+
+По нажатию на кнопку Delete выполняется удаления Account. Если удаление успешно показывается сообщение об успешном удалении, в противном случаи показывается сообщение об ошибки с текстом ошибку, описывающим почему удаление не прошло успешно.
+![Screenshot_10](https://user-images.githubusercontent.com/84872903/134822307-9353374d-b85b-447b-bd45-28ade98bae7c.png)
